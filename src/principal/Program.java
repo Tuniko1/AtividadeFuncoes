@@ -4,8 +4,27 @@ import java.util.Scanner;
 public class Program {
 	
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		char opcao;
 		
-		Menu();
+		System.out.println("Iniciar Programa de Funções? Sim ou Não");
+		opcao = sc.next().charAt(0);
+		
+		if (opcao == 's'||opcao == 'S') { //ou (Character.toUpperCase(opcao) == 's') 
+			do {	
+				System.out.println("Mostrar menu? Sim ou Não");
+				opcao = sc.next().charAt(0);
+					if (opcao == 's'||opcao == 'S') {
+				Menu();
+					}else {
+					System.exit(0);
+					}
+			}while(opcao == 's');
+			
+		}else { 
+				System.exit(0);
+			sc.close();
+		}
 	}
 	
 	static void Menu() {
@@ -13,9 +32,9 @@ public class Program {
 		int opcao;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Entre com a opção desejada:");
-		System.out.println("1 - Programa - Cambio de moedas");
-		System.out.println("2 - Programa - Soma de argumentos");
-		System.out.println("3 - Programa - Produto ");
+		System.out.println("1 - Programa - Cambio de Moedas");
+		System.out.println("2 - Programa - Soma de Argumentos");
+		System.out.println("3 - Programa - Produto Porcentagem de Lucro");
 		opcao = sc.nextInt();
 		
 		switch (opcao){
@@ -25,20 +44,18 @@ public class Program {
 			
 			break;
 		case 2:
-			System.out.println("A soma dos argumentos 10+10+10 é: "+argumentosSoma(10,10,10));
+			System.out.println("A soma dos argumentos 10+10+10 é: "+argumentosSoma(10,10,10)+"\n");
 		
 			break;
 		case 3:
-			
-			
-			System.out.println("O preço final do produto é: "+produtoFinal(0,0));
+			System.out.println("O preço final do produto é: R$ "+produtoFinal(0,0)+"\n");
 			
 			break;
 		default: System.out.println("Opção inválida!");
 		sc.close();
 		}
 	}
-	// Programa 1 
+	//Programa 1
 	static void cotacaoDolarReal() {
 		
 	    double cotacaoDolar = 5.042;
@@ -59,14 +76,14 @@ public class Program {
 	    	System.out.print("Valor a ser convertido: R$");
 	    	valor = sc.nextDouble();
 	    	valorConvertido = valor / cotacaoDolar; 
-	    	System.out.println("\n1. Conversão de Real para Dólar: "+valorConvertido+"\n");
+	    	System.out.println("\n1. Conversão de Real para Dólar: US$ "+valorConvertido+"\n");
 	    	
 	    	break;
 	    case 2:
 	    	System.out.print("Valor a ser convertido: US$");
 	    	valor = sc.nextDouble();
 	    	valorConvertido = valor * cotacaoDolar;
-	    	System.out.println ("2. Conversão de Dólar para Real: "+valorConvertido+"\n");
+	    	System.out.println ("2. Conversão de Dólar para Real: R$ "+valorConvertido+"\n");
 	    	
 	    	break;
 		default: System.out.println("Opção invalida");
@@ -74,10 +91,12 @@ public class Program {
 	
 	    }
 	}
+	//Programa 2
 	static int argumentosSoma(int arg1,int arg2,int arg3) {
 		return (arg1 + arg2 + arg3);
 		
 	}
+	//Programa 3
 	static double produtoFinal(double valorDoProduto, double lucroProduto) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -87,13 +106,11 @@ public class Program {
 		System.out.println("Insira o valor da taxa de lucro a ser aplicada: %");
 		lucroProduto = sc.nextDouble();
 		
-		lucroProduto /=  100;
+		lucroProduto /= 100;
 		lucroProduto *= valorDoProduto;
 		lucroProduto += valorDoProduto ;
+		//sc.close();
 		return lucroProduto;
-		
-		
 	}
 	
-
 }
